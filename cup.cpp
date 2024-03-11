@@ -14,6 +14,16 @@ bool Cup::hasBall()
     return this->withBall;
 }
 
+void Cup::setWithBall()
+{
+    this->withBall = true;
+}
+
+void Cup::setWithoutBall()
+{
+    this->withBall = false;
+}
+
 void Cup::printCup()
 {
     std::system("cls");
@@ -97,7 +107,7 @@ void Cup::animateCup()
    /\\         /\\        /  \\
   /  \\       /  \\      /    \\
  /    \\     /    \\    /______\\
-/______\\   /______\\      O
+/______\\   /______\\       O
 )";
             }
             break;

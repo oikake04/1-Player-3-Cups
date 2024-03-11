@@ -1,3 +1,4 @@
+#pragma once
 #include <iostream>
 
 class Cup
@@ -9,6 +10,8 @@ class Cup
     public:
         Cup(int id, bool withBall = false);
         bool hasBall();
+        void setWithBall();
+        void setWithoutBall();
 
         void animateCup();
         void printCup();
