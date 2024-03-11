@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
+#include <random>
 #include "game.hpp"
 #include "cup.hpp"
 
@@ -9,10 +10,24 @@ Game::Game(int score)
     this->score = score;
 }
 
+int Game::getRandomNumber() {
+    // Use std::random_device to obtain a seed for the random number engine
+    std::random_device rd;
+
+    // Use std::mt19937 as the random number engine
+    std::mt19937 gen(rd());
+
+    // Use std::uniform_int_distribution to generate a random number in the specified range
+    std::uniform_int_distribution<int> distribution(1, 3);
+
+    // Generate and return the random number
+    return distribution(gen);
+}
+
 void Game::shuffleCups(Cup &cup1, Cup &cup2, Cup &cup3)
 {
-    srand(time(NULL));
-    switch (rand() % 3 + 1)
+    std::srand(static_cast<unsigned int>(std::time(nullptr)));
+    switch (getRandomNumber())
     {
         case 1:
             cup1.setWithBall();

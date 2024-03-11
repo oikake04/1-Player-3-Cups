@@ -14,6 +14,7 @@ class Game
         void gameReset();
         void shuffleCups(Cup &cup1, Cup &cup2, Cup &cup3);
 
+        int getRandomNumber();
         int getScore();
         int getStreak();
 };
