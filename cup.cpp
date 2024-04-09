@@ -26,7 +26,7 @@ void Cup::setWithoutBall()
 
 void Cup::printCup()
 {
-    std::system("cls");
+    std::system("clear");
     std::cout <<R"(
 
    /\\         /\\         /\\
@@ -42,7 +42,7 @@ void Cup::animateCup()
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    std::system("cls");
+    std::system("clear");
     switch (this->id)
     {
         case 1:
