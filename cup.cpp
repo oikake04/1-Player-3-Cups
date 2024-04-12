@@ -3,6 +3,18 @@
 #include <thread>
 #include "cup.hpp"
 
+void clearScreen() {
+    // Su Linux e macOS, usa ANSI escape sequences
+    #ifdef __linux__
+        std::cout << "\033[2J\033[1;1H";
+    #endif
+
+    // Su Windows, usa il comando "cls"
+    #ifdef _WIN32
+        std::system("cls");
+    #endif
+}
+
 Cup::Cup(int id, bool withBall)
 {
     this->id = id;
@@ -26,7 +38,7 @@ void Cup::setWithoutBall()
 
 void Cup::printCup(int score)
 {
-    std::system("clear");
+    clearScreen();
     std::cout << " Score: " << score;
     std::cout <<R"(
 
@@ -43,7 +55,7 @@ void Cup::animateCup(int score)
 
     std::this_thread::sleep_for(std::chrono::seconds(1));
 
-    std::system("clear");
+    clearScreen();
     switch (this->id)
     {
         case 1:
