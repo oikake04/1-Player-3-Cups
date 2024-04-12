@@ -49,10 +49,11 @@ void Game::shuffleCups(Cup &cup1, Cup &cup2, Cup &cup3)
 
 void Game::gameStart()
 {
-    std::cout << "Game started successfully!\n Welcome to...\n \t| One Player - 3 Cups |\n";
-    std::cout << "\nGame Rules: Chose the right Cup and guess where is the Ball!";
+    std::cout << "\n\t| One Player - 3 Cups |\n";
+    std::cout << "\nGame Rules: Chose the right Cup and guess where is the Ball!\n";
 
-    std::this_thread::sleep_for(std::chrono::seconds(5));
+    std::cout << " (Press enter to start...)";
+    getchar();
 
     int cupChosen;
     int tryCount = 0;
@@ -67,7 +68,7 @@ void Game::gameStart()
     while (continueCheck == 1)
     {
         shuffleCups(cup1, cup2, cup3);
-        cup1.printCup();
+        cup1.printCup(this->score);
         //scelta della Cup
         std::cout << "\tWhere is the Ball?\n\t(Digit 1, 2 o 3)\n";
         invalidInput = true;
@@ -77,35 +78,38 @@ void Game::gameStart()
             if (cupChosen == 1 || cupChosen == 2 || cupChosen == 3)
             {
                 invalidInput = false;
+            } else {
+                std::cout << "Invalid input" << std::endl;
+                std::cin.clear(); // resetta lo stato di errore di cin
+                std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // svuota il buffer
             }
         }
         //animazione della Cup
         switch (cupChosen)
         {
             case 1:
-                cup1.animateCup();
+                cup1.animateCup(this->score);
                 winCheck = cup1.hasBall();
                 break;
             case 2:
-                cup2.animateCup();
+                cup2.animateCup(this->score);
                 winCheck = cup2.hasBall();
                 break;
             case 3:
-                cup3.animateCup();
+                cup3.animateCup(this->score);
                 winCheck = cup3.hasBall();
                 break;
         }
         //assegnazione punti e streak
         if (winCheck){
-            std::cout << "        You Win!\n";
+            std::cout << "            You Win!\n";
             this->score++;
-            std::cout << "        Your score is " << this->score << "!\n";
             tryCount = 0;
         }
         else
         {
             showSolution(cup1,cup2,cup3);
-            std::cout << "        You Lose!\n";
+            std::cout << "            You Lose!\n";
             tryCount++;
         }
         //exit check
@@ -113,10 +117,9 @@ void Game::gameStart()
 
         if (tryCount >= 3)
         {
-            std::cout << "          Final Score: " << this->score << "\n\n";
             this->score = 0;
 
-            std::cout << "Retry?   (1 (Yes) / 0 (No))\n";
+            std::cout << "\n Retry?   (1 (Yes) / 0 (No))\n";
             invalidInput = true;
             while(invalidInput)
             {
@@ -134,9 +137,9 @@ void Game::gameStart()
 void Game::showSolution(Cup &cup1, Cup &cup2, Cup &cup3)
 {
     if (cup1.hasBall())
-        cup1.animateCup();
+        cup1.animateCup(this->score);
     else if (cup2.hasBall())
-        cup2.animateCup();
+        cup2.animateCup(this->score);
     else if (cup3.hasBall())
-        cup3.animateCup();
+        cup3.animateCup(this->score);
 }

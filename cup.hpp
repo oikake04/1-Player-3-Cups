@@ -13,6 +13,6 @@ class Cup
         void setWithBall();
         void setWithoutBall();
 
-        void animateCup();
-        void printCup();
+        void animateCup(int score);
+        void printCup(int score);
 };
