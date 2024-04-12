@@ -104,6 +104,7 @@ void Game::gameStart()
         }
         else
         {
+            showSolution(cup1,cup2,cup3);
             std::cout << "        You Lose!\n";
             tryCount++;
         }
@@ -129,3 +130,13 @@ void Game::gameStart()
         }
     }
 };
+
+void Game::showSolution(Cup &cup1, Cup &cup2, Cup &cup3)
+{
+    if (cup1.hasBall())
+        cup1.animateCup();
+    else if (cup2.hasBall())
+        cup2.animateCup();
+    else if (cup3.hasBall())
+        cup3.animateCup();
+}

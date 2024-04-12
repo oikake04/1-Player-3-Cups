@@ -13,6 +13,7 @@ class Game
         void gameStart();
         void gameReset();
         void shuffleCups(Cup &cup1, Cup &cup2, Cup &cup3);
+        void showSolution(Cup &cup1, Cup &cup2, Cup &cup3);
 
         int getRandomNumber();
         int getScore();
